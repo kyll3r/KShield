@@ -1,30 +1,33 @@
-# Project: EXECHANGE
+# Project: Project2
 # Makefile created by Dev-C++ 4.9.9.2
 
 CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
-RES  = 
+RES  = ChangeFiles_private.res
 OBJ  = main.o $(RES)
 LINKOBJ  = main.o $(RES)
-LIBS =  -L"C:/Dev-Cpp/lib"  
+LIBS =  -L"C:/Dev-Cpp/lib" -l wsock32 -l wsock32  
 INCS =  -I"C:/Dev-Cpp/include" 
 CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
-BIN  = EXECHANGE.exe
+BIN  = ServMonitor.exe
 CXXFLAGS = $(CXXINCS)  
 CFLAGS = $(INCS)  
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before EXECHANGE.exe all-after
+all: all-before ServMonitor.exe all-after
 
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o "EXECHANGE.exe" $(LIBS)
+	$(CPP) $(LINKOBJ) -o "ServMonitor.exe" $(LIBS)
 
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+ChangeFiles_private.res: ChangeFiles_private.rc 
+	$(WINDRES) -i ChangeFiles_private.rc --input-format=rc -o ChangeFiles_private.res -O coff 
